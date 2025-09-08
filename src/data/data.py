@@ -16,7 +16,7 @@ class Data:
         for elem in lista:
             existe = False
             for r in resultado:
-                if r == elem:
+                if r == elem and type(r) == type(elem):
                     existe = True
                     break
             if not existe:
@@ -43,6 +43,8 @@ class Data:
     
     def rotar_lista(self, lista, k):
         n = len(lista)
+        if n == 0:
+            return []
         k = k % n
         rotada = []
         for i in range(n):
