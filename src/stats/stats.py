@@ -5,7 +5,7 @@ class Stats:
     def mediana(self, numeros):
         n = len(numeros)
         if n == 0:
-            return None
+            return 0
         nums = sorted(numeros)
         mid = n // 2
         if n % 2 == 0:

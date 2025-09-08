@@ -33,14 +33,19 @@ class Strings:
         return len(palabras)
     
     def palabras_mayus(self, texto):
-        palabras = texto.split()
-        palabras_cap = []
-        for palabra in palabras:
-            if palabra:
-                palabras_cap.append(palabra[0].upper() + palabra[1:].lower())
+        resultado = ""
+        i = 0
+        while i < len(texto):
+            if texto[i].isspace():
+                resultado += texto[i]
+                i += 1
             else:
-                palabras_cap.append(palabra)
-        return " ".join(palabras_cap)
+                start = i
+                while i < len(texto) and not texto[i].isspace():
+                    i += 1
+                palabra = texto[start:i]
+                resultado += palabra[0].upper() + palabra[1:].lower() if palabra else ""
+        return resultado
     
     def eliminar_espacios_duplicados(self, texto):
         resultado = ""
@@ -53,7 +58,7 @@ class Strings:
             else:
                 resultado += char
                 prev_espacio = False
-        return resultado.strip()
+        return resultado  # sin strip para conservar espacios iniciales y finales
     
     def es_numero_entero(self, texto):
         if texto == "":
@@ -84,6 +89,8 @@ class Strings:
         return self.cifrar_cesar(texto, -desplazamiento)
     
     def encontrar_subcadena(self, texto, subcadena):
+        if not subcadena:
+            return []
         posiciones = []
         n = len(texto)
         m = len(subcadena)
